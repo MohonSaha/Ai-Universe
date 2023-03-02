@@ -16,9 +16,8 @@
 
 .fa-arrow-right{
     color:#EB5757;
-    /* background-color:  #FEF7F7; */
     background-color:  #fceaea;
     border-radius: 50%;
-    /* border: 1.5px solid #EB5757; */
     padding: 14px;
+    cursor: pointer;
 }

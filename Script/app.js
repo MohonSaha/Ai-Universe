@@ -14,8 +14,7 @@ const displayFetchData = (data) => {
     const cardParent = document.getElementById('card-container');
     cardParent.innerHTML = '';
     data.forEach(singleData => {
-        console.log(singleData);
-        const { image, features, name, published_in } = singleData;
+        const { image, features, name, published_in, id} = singleData;
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
         cardDiv.innerHTML = `
@@ -39,7 +38,7 @@ const displayFetchData = (data) => {
                                         <p class='publish-date'>${published_in}</p>
                                     </div>
                                 </div>
-                                <i class="fa-solid fa-arrow-right"></i>
+                                <i onclick="fetchShowDetails('${id}')" class="fa-solid fa-arrow-right" data-bs-toggle="modal" data-bs-target="#aiPage"></i>
                             </div>
                             </p>
                     </div>
@@ -49,6 +48,28 @@ const displayFetchData = (data) => {
 
     });
 }
+
+
+const fetchShowDetails = (id) =>{
+    const URL = `https://openapi.programming-hero.com/api/ai/tool/${id}`
+    fetch(URL)
+    .then(res => res.json())
+    .then(data => displayShowDetails(data.data))
+}
+
+
+const displayShowDetails = (data) =>{
+    console.log(data);
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
+                    <img class='modal-img w-50' src="${data.image_link[0]}" alt="">
+    `;
+}
+
+
+
+
+
 
 
 

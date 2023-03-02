@@ -31,14 +31,38 @@
     <main>
         <section class="container mt-5">
             <div id="card-container" class="row row-cols-1 row-cols-md-3 g-4">
-               
-                    <!-- This card code is added in js for dynamically add the data  -->             
+
+                <!-- This card code is added in js for dynamically add the data  -->
             </div>
 
         </section>
 
         <section class="my-4 text-center">
-            <button id="show-more" onclick="showAllData()" type="button" class="btn btn-danger py-2 px-4">See More</button>
+            <button id="show-more" onclick="showAllData()" type="button" class="btn btn-danger py-2 px-4">See
+                More</button>
+        </section>
+
+        <!-- Modal area start  -->
+        <section class="conatiner">
+            <!-- Modal -->
+            <div class="modal fade" id="aiPage" tabindex="-1" aria-labelledby="aiPageLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="aiPageLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div id="modal-body" class="modal-body">
+                           
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
     </main>

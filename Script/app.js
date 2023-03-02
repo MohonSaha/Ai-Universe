@@ -1,14 +1,18 @@
-
+const showAllBtn = document.getElementById('show-all').classList.add('d-none');
 
 const fetchData = () => {
     const URL = 'https://openapi.programming-hero.com/api/ai/tools';
     fetch(URL)
         .then(res => res.json())
-        .then(data => displayFetchData(data.data.tools))
-}
+        .then(data => {
+            const showAllBtn = document.getElementById('show-all').classList.remove('d-none');
+            displayFetchData(data.data.tools.slice(0, 6))
+        })
+};
 
 const displayFetchData = (data) => {
     const cardParent = document.getElementById('card-container');
+    cardParent.innerHTML = '';
     data.forEach(singleData => {
         console.log(singleData);
         const { image, features, name, published_in } = singleData;
@@ -21,9 +25,9 @@ const displayFetchData = (data) => {
                         <h5 class="card-title">Features</h5>
                         <p class="card-text">
                         <ol>
-                            <li>${features[0]}</li>
-                            <li>${features[1]}</li>
-                            <li>${features[2]}</li>
+                            <li>${features[0] ? features[0] : 'Not available'}</li>
+                            <li>${features[1] ? features[1] : 'Not available'}</li>
+                            <li>${features[2] ? features[2] : 'Not available'}</li>
                         </ol>
 
                         <hr class = 'mb-4'> 
@@ -47,5 +51,17 @@ const displayFetchData = (data) => {
 }
 
 
+
+// Show all button to show all data in UI
+const showAllData = () =>{
+    const URL = 'https://openapi.programming-hero.com/api/ai/tools';
+    fetch(URL)
+        .then(res => res.json())
+        .then(data => {
+            displayFetchData(data.data.tools)
+        })
+    const showAllBtn = document.getElementById('show-all');
+    showAllBtn.classList.add('d-none');
+}
 
 fetchData();

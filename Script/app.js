@@ -3,15 +3,15 @@
 const fetchData = () => {
     const URL = 'https://openapi.programming-hero.com/api/ai/tools';
     fetch(URL)
-    .then(res => res.json())
-    .then(data => displayFetchData(data.data.tools))
+        .then(res => res.json())
+        .then(data => displayFetchData(data.data.tools))
 }
 
-const displayFetchData = (data) =>{
+const displayFetchData = (data) => {
     const cardParent = document.getElementById('card-container');
     data.forEach(singleData => {
         console.log(singleData);
-        const {image, features, name} = singleData;
+        const { image, features, name, published_in } = singleData;
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
         cardDiv.innerHTML = `
@@ -27,8 +27,15 @@ const displayFetchData = (data) =>{
                         </ol>
 
                         <hr> 
-                        <h5 class="card-title">${name}</h5>
-                        </p>
+                            <div>
+                                <div>
+                                    <h5 class="card-title">${name}</h5>
+                                    <div class='date-container d-flex align-items-center'> 
+                                         <i class="fa-solid fa-calendar-days me-2"></i>
+                                        <p class='publish-date'>${published_in}</p>
+                                    </div>
+                                </div>
+                            </p>
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">Last updated 3 mins ago</small>

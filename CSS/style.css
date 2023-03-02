@@ -21,3 +21,32 @@
     padding: 14px;
     cursor: pointer;
 }
+
+.modal-img{
+    width: 340px;
+    height: 250px;
+    border-radius: 12px;
+}
+
+.modal-head{
+    position: relative;
+    left: 780px;
+    top: -10px;
+}
+
+.modal-btn{
+    border: none;
+    /* background-color: red; */
+}
+
+.fa-circle-xmark{
+    color: rgba(240, 43, 43, 0.896);
+    font-size: 28px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+}
+
+/* .accuracy-container{
+    text-align: center;
+
+} */

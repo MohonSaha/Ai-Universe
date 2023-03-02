@@ -1,11 +1,11 @@
-const showAllBtn = document.getElementById('show-all').classList.add('d-none');
+const showMoreBtn = document.getElementById('show-more').classList.add('d-none');
 
 const fetchData = () => {
     const URL = 'https://openapi.programming-hero.com/api/ai/tools';
     fetch(URL)
         .then(res => res.json())
         .then(data => {
-            const showAllBtn = document.getElementById('show-all').classList.remove('d-none');
+            const showMoreBtn = document.getElementById('show-more').classList.remove('d-none');
             displayFetchData(data.data.tools.slice(0, 6))
         })
 };
@@ -60,8 +60,8 @@ const showAllData = () =>{
         .then(data => {
             displayFetchData(data.data.tools)
         })
-    const showAllBtn = document.getElementById('show-all');
-    showAllBtn.classList.add('d-none');
+    const showMoreBtn = document.getElementById('show-more');
+    showMoreBtn.classList.add('d-none');
 }
 
 fetchData();

@@ -59,15 +59,24 @@ const fetchShowDetails = (id) =>{
 
 
 const displayShowDetails = (data) =>{
-    console.log(data.input_output_examples);
-    const {input_output_examples, image_link} = data;
+    console.log(data);
+    const {input_output_examples, image_link, description} = data;
     const modalImg = document.getElementById('modal-img');
     const modalText = document.getElementById('modal-text');
+    modalText.innerHTML = `
+                    <div class='modal-text-container'>
+                        <h4>${description}</h4>
+                    </div>
+    `;
+
+
     modalImg.innerHTML = `
-                    <img class='modal-img' src="${image_link[0]}" alt="">
-                    <div class = 'accuracy-container text-center mt-4 pe-3'>
+                    <div class = 'modal-img-container'>
+                    <img class='modal-img pe-2' src="${image_link[0]}" alt="">
+                    <div class = 'text-center mt-4 pe-3'>
                     <h4>${input_output_examples[0].input}</h4>
                     <p class = 'px-4 text-secondary'>${input_output_examples[0].output}</p>
+                    </div>
                     </div>
     `;
 }

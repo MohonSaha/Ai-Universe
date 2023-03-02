@@ -31,7 +31,7 @@
 
 .modal-head{
     position: relative;
-    left: 780px;
+    left: 97%;
     top: -10px;
 }
 
@@ -109,3 +109,42 @@
     font-size: 14px;
     color: #585858;
 }
+
+
+
+
+
+
+
+/* Responsive for mobile devices  */
+
+@media screen and (max-width:576px) {
+
+    .modal-img{
+        /* width: 260px; */
+        width: 104%;
+        height: 250px;
+        border-radius: 18px;
+        /* padding-right: 10px; */
+    }
+
+    .modal-head{
+        position: relative;
+        left: 94%;
+        top: -10px;
+    }
+  
+}
+
+@media screen and (min-width:577px) and (max-width:992px){
+    .modal-img{
+        /* width: 260px; */
+        width: 104%;
+        height: 250px;
+        border-radius: 18px;
+        /* padding-right: 10px; */
+    }
+
+}
+
+

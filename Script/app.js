@@ -1,20 +1,23 @@
 const showMoreBtn = document.getElementById('show-more').classList.add('d-none');
 
 const fetchData = () => {
+    document.getElementById('spinner-container').classList.remove('d-none')
     const URL = 'https://openapi.programming-hero.com/api/ai/tools';
     fetch(URL)
         .then(res => res.json())
         .then(data => {
             const showMoreBtn = document.getElementById('show-more').classList.remove('d-none');
+            document.getElementById('spinner-container').classList.add('d-none')
             displayFetchData(data.data.tools.slice(0, 6))
         })
 };
 
 const displayFetchData = (data) => {
+    
     const cardParent = document.getElementById('card-container');
     cardParent.innerHTML = '';
     data.forEach(singleData => {
-        const { image, features, name, published_in, id} = singleData;
+        const { image, features, name, published_in, id } = singleData;
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
         cardDiv.innerHTML = `
@@ -50,17 +53,17 @@ const displayFetchData = (data) => {
 }
 
 
-const fetchShowDetails = (id) =>{
+const fetchShowDetails = (id) => {
     const URL = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(URL)
-    .then(res => res.json())
-    .then(data => displayShowDetails(data.data))
+        .then(res => res.json())
+        .then(data => displayShowDetails(data.data))
 }
 
 
-const displayShowDetails = (data) =>{
+const displayShowDetails = (data) => {
     console.log(data);
-    const {input_output_examples, image_link, description, pricing, features, integrations} = data;
+    const { input_output_examples, image_link, description, pricing, features, integrations } = data;
     console.log(input_output_examples[0].output.length);
     const modalImg = document.getElementById('modal-img');
     const modalText = document.getElementById('modal-text');
@@ -122,7 +125,7 @@ const displayShowDetails = (data) =>{
                     <img class='modal-img pe-2' src="${image_link[0]}" alt="">
                     <div class = 'text-center mt-4 pe-3'>
                     <h4>${input_output_examples[0].input}</h4>
-                    <p class = 'px-4 text-secondary'>${input_output_examples[0].output ? input_output_examples[0].output  : 'sorrry' }</p>
+                    <p class = 'px-4 text-secondary'>${input_output_examples[0].output ? input_output_examples[0].output : 'sorrry'}</p>
                     </div>
                     </div>
     `;
@@ -136,7 +139,7 @@ const displayShowDetails = (data) =>{
 
 
 // Show all button to show all data in UI
-const showAllData = () =>{
+const showAllData = () => {
     const URL = 'https://openapi.programming-hero.com/api/ai/tools';
     fetch(URL)
         .then(res => res.json())

@@ -1,16 +1,24 @@
+.card-img{
+    height: 200px;
+}
+
+
 .publish-date{
     font-size: 14px;
     color: #585858;
     margin: 0px;
 }
 
-.fa-solid{
+.fa-calendar-days{
     color: #585858;
     margin: 0px;
 }
 
-/* .date-container{
-    height: 0px;
-    display: flex;
-    align-items: center;
-} */
+.fa-arrow-right{
+    color:#EB5757;
+    /* background-color:  #FEF7F7; */
+    background-color:  #fceaea;
+    border-radius: 50%;
+    /* border: 1.5px solid #EB5757; */
+    padding: 14px;
+}

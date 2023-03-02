@@ -15,8 +15,8 @@ const displayFetchData = (data) => {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
         cardDiv.innerHTML = `
-                <div class="card h-100">
-                    <img src="${image}" class="card-img-top" alt="...">
+                <div class="card h-100 p-3">
+                    <img src="${image}" class="card-img-top rounded card-img" alt="">
                     <div class="card-body">
                         <h5 class="card-title">Features</h5>
                         <p class="card-text">
@@ -26,8 +26,8 @@ const displayFetchData = (data) => {
                             <li>${features[2]}</li>
                         </ol>
 
-                        <hr> 
-                            <div>
+                        <hr class = 'mb-4'> 
+                            <div class='d-flex align-items-center justify-content-between'>
                                 <div>
                                     <h5 class="card-title">${name}</h5>
                                     <div class='date-container d-flex align-items-center'> 
@@ -35,10 +35,9 @@ const displayFetchData = (data) => {
                                         <p class='publish-date'>${published_in}</p>
                                     </div>
                                 </div>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
                             </p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
                     </div>
                 </div>
         `;

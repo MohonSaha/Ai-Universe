@@ -60,3 +60,30 @@
     padding: 12px 16px;
     background-color: #ffffff;
 }
+
+.price-container{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 0px 16px;
+    margin: 24px 0px;
+}
+
+.price-container p{
+    margin: 0px;
+    text-align: center;
+    /* width: 80px; */
+    font-weight: 600;
+}
+
+.features-container{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.features-container ul li {
+    font-size: 14px;
+    color: #585858;
+}

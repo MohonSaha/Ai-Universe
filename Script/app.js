@@ -60,12 +60,59 @@ const fetchShowDetails = (id) =>{
 
 const displayShowDetails = (data) =>{
     console.log(data);
-    const {input_output_examples, image_link, description} = data;
+    const {input_output_examples, image_link, description, pricing, features, integrations} = data;
+    console.log(input_output_examples[0].output.length);
     const modalImg = document.getElementById('modal-img');
     const modalText = document.getElementById('modal-text');
     modalText.innerHTML = `
                     <div class='modal-text-container'>
                         <h4>${description}</h4>
+
+                        <div class= 'price-container'>
+                            <div>
+                            <p>${pricing[0].price}</p>
+                            <p>${pricing[0].plan}</p>
+                            </div>
+
+                            <div>
+                                <p>${pricing[1].price}</p>
+                                <p>${pricing[1].plan}</p>
+                            </div>
+                            <div>
+                                <p>${pricing[2].price}</p>
+                                <p>${pricing[2].plan}</p>
+                            </div>
+                        </div>
+
+                        <div class = 'features-container'>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Features</h4>
+                                    <ul>
+                                        <li>${features[1].feature_name}</li>
+                                        <li>${features[2].feature_name}</li>
+                                         <li>${features[3].feature_name}</li>
+                                    </ul>
+                                </div>
+                            
+                                <div class="col-md-6">
+                                    <h4>Integrations</h4>
+                                    <ul>
+                                        <li>${integrations[0]}</li>
+                                        <li>${integrations[1]}</li>
+                                         <li>${integrations[2]}</li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            
+                        </div>
+
+
+
+
+
                     </div>
     `;
 
@@ -75,7 +122,7 @@ const displayShowDetails = (data) =>{
                     <img class='modal-img pe-2' src="${image_link[0]}" alt="">
                     <div class = 'text-center mt-4 pe-3'>
                     <h4>${input_output_examples[0].input}</h4>
-                    <p class = 'px-4 text-secondary'>${input_output_examples[0].output}</p>
+                    <p class = 'px-4 text-secondary'>${input_output_examples[0].output ? input_output_examples[0].output  : 'sorrry' }</p>
                     </div>
                     </div>
     `;

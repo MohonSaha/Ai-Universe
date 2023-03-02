@@ -69,16 +69,16 @@ const displayShowDetails = (data) =>{
                         <h4>${description}</h4>
 
                         <div class= 'price-container'>
-                            <div>
+                            <div class = 'basic-price price-div'>
                             <p>${pricing[0].price}</p>
                             <p>${pricing[0].plan}</p>
                             </div>
 
-                            <div>
+                            <div class = 'pro-price price-div'>
                                 <p>${pricing[1].price}</p>
                                 <p>${pricing[1].plan}</p>
                             </div>
-                            <div>
+                            <div class = 'enterprise-price price-div'>
                                 <p>${pricing[2].price}</p>
                                 <p>${pricing[2].plan}</p>
                             </div>

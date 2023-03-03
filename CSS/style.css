@@ -63,8 +63,8 @@
 
 .text-bg-danger{
     position: absolute;
-    bottom: 89%;
-    left: 69%;
+    bottom: 90%;
+    left: 63%;
     padding: 20px 6px;
 }
 
@@ -91,7 +91,6 @@
 .price-container p{
     margin: 0px;
     text-align: center;
-    /* width: 80px; */
     font-weight: 700;
 }
 
@@ -128,17 +127,35 @@
 @media screen and (max-width:576px) {
 
     .modal-img{
-        /* width: 260px; */
         width: 104%;
-        height: 250px;
+        height: 150px;
         border-radius: 18px;
-        /* padding-right: 10px; */
+    }
+
+    .text-bg-danger{
+        position: absolute;
+        bottom: 87%;
+        left: 53%;
+        padding: 20px 6px;
     }
 
     .modal-head{
         position: relative;
         left: 94%;
         top: -10px;
+    }
+
+    .price-container{
+        gap: 10px;
+        padding: 0px;
+    }
+
+    .price-div{
+        padding: 0px 0px;
+    }
+
+    .features-container ul li {
+        font-size: 16px;
     }
   
 }

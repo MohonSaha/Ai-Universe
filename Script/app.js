@@ -118,7 +118,9 @@ const displayShowDetails = (data) => {
     modalImg.innerHTML = `
                     <div class = 'modal-img-container position-relative'>                   
                     <img class='modal-img pe-2' src="${image_link[0]}" alt="">
-                    <span class="badge text-bg-danger p-2"></span>
+                        <h5 class="card-title">
+                        ${accuracy.score ? `<span class="badge text-bg-danger">${accuracy.score * 100}% Accuracy</span>`: `<span class="badge text-bg-warning d-none">${accuracy.score}</span>`}</h5>
+                    
                     <div class = 'text-center mt-4 pe-3'>
                     <h4>${input_output_examples ? input_output_examples[0].input : "Can you give any example?"}</h4>
                     <p class = 'px-4 text-secondary'>${input_output_examples ? input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
@@ -134,17 +136,7 @@ const displayShowDetails = (data) => {
 
 
 
-// Show all button to show all data in UI
-const showAllData = () => {
-    const URL = 'https://openapi.programming-hero.com/api/ai/tools';
-    fetch(URL)
-        .then(res => res.json())
-        .then(data => {
-            displayFetchData(data.data.tools)
-        })
-    const showMoreBtn = document.getElementById('show-more');
-    showMoreBtn.classList.add('d-none');
-}
+
 
 
 
@@ -155,7 +147,8 @@ const sortByDate = () => {
         .then(res => res.json())
         .then(data => {
             displayFetchDataBySort(data.data.tools.slice(0, 6))
-        })
+        });
+}
 
     const displayFetchDataBySort = (data) => {
         // Data sorting function 
@@ -206,8 +199,21 @@ const sortByDate = () => {
 
         });
     }
-}
 
+
+
+// Show all button to show all data in UI
+const showAllData = () => {
+    const URL = 'https://openapi.programming-hero.com/api/ai/tools';
+    fetch(URL)
+        .then(res => res.json())
+        .then(data => {
+            displayFetchData(data.data.tools)         
+        })
+    const showMoreBtn = document.getElementById('show-more');
+    showMoreBtn.classList.add('d-none');
+   
+}
 
 
 

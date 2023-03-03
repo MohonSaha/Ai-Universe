@@ -63,7 +63,8 @@ const fetchShowDetails = (id) => {
 
 const displayShowDetails = (data) => {
     console.log(data);
-    const { input_output_examples, image_link, description, pricing, features, integrations } = data;
+    const { input_output_examples, image_link, description, pricing, features, integrations, accuracy} = data;
+    const accuracyPercent = accuracy.score * 100;
     console.log(input_output_examples[0].output.length);
     const modalImg = document.getElementById('modal-img');
     const modalText = document.getElementById('modal-text');
@@ -106,23 +107,16 @@ const displayShowDetails = (data) => {
                                          <li>${integrations[2]}</li>
                                     </ul>
                                 </div>
-
-                            </div>
-
-                            
+                            </div>                            
                         </div>
-
-
-
-
-
                     </div>
     `;
 
 
     modalImg.innerHTML = `
-                    <div class = 'modal-img-container'>
+                    <div class = 'modal-img-container position-relative'>                   
                     <img class='modal-img pe-2' src="${image_link[0]}" alt="">
+                    <span class="badge text-bg-danger p-2">${accuracyPercent}% accuracy</span>
                     <div class = 'text-center mt-4 pe-3'>
                     <h4>${input_output_examples[0].input}</h4>
                     <p class = 'px-4 text-secondary'>${input_output_examples[0].output ? input_output_examples[0].output : 'sorrry'}</p>

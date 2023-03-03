@@ -61,6 +61,13 @@
     background-color: #ffffff;
 }
 
+.text-bg-danger{
+    position: absolute;
+    bottom: 89%;
+    left: 69%;
+    padding: 20px 6px;
+}
+
 .price-container{
     display: flex;
     gap: 10px;

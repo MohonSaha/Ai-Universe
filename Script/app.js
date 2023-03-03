@@ -1,4 +1,6 @@
 const showMoreBtn = document.getElementById('show-more').classList.add('d-none');
+let allData = [];
+
 
 const fetchData = () => {
     document.getElementById('spinner-container').classList.remove('d-none')
@@ -8,19 +10,22 @@ const fetchData = () => {
         .then(data => {
             const showMoreBtn = document.getElementById('show-more').classList.remove('d-none');
             document.getElementById('spinner-container').classList.add('d-none')
-            displayFetchData(data.data.tools.slice(0, 6))
+            allData = data.data.tools;
+            displayFetchData(allData.slice(0, 6))
         })
 };
 
 
 const displayFetchData = (data) => {
-
+    let presentDataLength = data.length;
     const cardParent = document.getElementById('card-container');
-    cardParent.innerHTML = '';
     data.forEach(singleData => {
         const { image, features, name, published_in, id } = singleData;
-        console.log(features[2]);
         const btnContainer = document.getElementById('btn-container');
+        btnContainer.innerHTML = `
+                <button onclick="sortByDate(${presentDataLength})" type="button" class="btn btn-danger mt-3">Sort By Date</button>
+        `;
+
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
         cardDiv.innerHTML = `
@@ -56,6 +61,7 @@ const displayFetchData = (data) => {
 }
 
 
+// Function: Fetch details data through id
 const fetchShowDetails = (id) => {
     const URL = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(URL)
@@ -63,7 +69,7 @@ const fetchShowDetails = (id) => {
         .then(data => displayShowDetails(data.data))
 }
 
-
+// Function: Display details through modal: 
 const displayShowDetails = (data) => {
     console.log(data);
     const { input_output_examples, image_link, description, pricing, features, integrations, accuracy } = data;
@@ -113,12 +119,11 @@ const displayShowDetails = (data) => {
                     </div>
     `;
 
-
     modalImg.innerHTML = `
                     <div class = 'modal-img-container position-relative'>                   
                     <img class='modal-img pe-2' src="${image_link[0]}" alt="">
                         <h5 class="card-title">
-                        ${accuracy.score ? `<span class="badge text-bg-danger">${accuracy.score * 100}% Accuracy</span>`: `<span class="badge text-bg-warning d-none">${accuracy.score}</span>`}</h5>
+                        ${accuracy.score ? `<span class="badge text-bg-danger">${accuracy.score * 100}% Accuracy</span>` : `<span class="badge text-bg-warning d-none">${accuracy.score}</span>`}</h5>
                     
                     <div class = 'text-center mt-4 pe-3'>
                     <h4>${input_output_examples ? input_output_examples[0].input : "Can you give any example?"}</h4>
@@ -130,91 +135,41 @@ const displayShowDetails = (data) => {
 
 
 
+// Function: Implement sort button
 
-
-
-
-
-
-
-
-
-const sortByDate = () => {
-
-    const URL = 'https://openapi.programming-hero.com/api/ai/tools';
-    fetch(URL)
-        .then(res => res.json())
-        .then(data => {
-            displayFetchDataBySort(data.data.tools)
-        });
-}
-
-    const displayFetchDataBySort = (data) => {
-        // Data sorting function 
-        customSort = (a, b) => {
-            const dateA = new Date(a.published_in);
-            const dateB = new Date(b.published_in);
-            if (dateA > dateB) return 1;
-            else if (dateA < dateB) return -1;
-            return 0;
-        };
-        const sortedData = data.sort(customSort);;
-
+const sortByDate = (length) => {
+    if (length === 6) {
         const cardParent = document.getElementById('card-container');
         cardParent.innerHTML = '';
-        sortedData.forEach(singleData => {
-            const { image, features, name, published_in, id } = singleData;
-            const btnContainer = document.getElementById('btn-container');
-            const cardDiv = document.createElement('div');
-            cardDiv.classList.add('col');
-            cardDiv.innerHTML = `
-                    <div class="card h-100 p-3">
-                        <img src="${image}" class="card-img-top rounded card-img" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Features</h5>
-                            <p class="card-text">
-                            <ol>
-                                <li>${features[0] ? features[0] : 'No data found'}</li>
-                                <li>${features[1] ? features[1] : 'No data found'}</li>
-                                <li>${features[2] ? features[2] : 'No data found'}</li>
-                            </ol>
-    
-                            <hr class = 'mb-4'> 
-                                <div class='d-flex align-items-center justify-content-between'>
-                                    <div>
-                                        <h5 class="card-title">${name}</h5>
-                                        <div class='date-container d-flex align-items-center'> 
-                                             <i class="fa-solid fa-calendar-days me-2"></i>
-                                            <p class='publish-date'>${published_in}</p>
-                                        </div>
-                                    </div>
-                                    <i onclick="fetchShowDetails('${id}')" class="fa-solid fa-arrow-right" data-bs-toggle="modal" data-bs-target="#aiPage"></i>
-                                </div>
-                                </p>
-                        </div>
-                    </div>
-            `;
-            cardParent.appendChild(cardDiv);
-
-        });
+        displayFetchData(allData.slice(0, 6).sort(customSort))
     }
+    else{
+        const cardParent = document.getElementById('card-container');
+        cardParent.innerHTML = '';
+        displayFetchData(allData.sort(customSort))
+    }
+}
 
+
+// Date sorting function :
+customSort = (a, b) => {
+    const dateA = new Date(a.published_in);
+    const dateB = new Date(b.published_in);
+    if (dateA > dateB) return 1;
+    else if (dateA < dateB) return -1;
+    return 0;
+};
 
 
 // Show all button to show all data in UI
 const showAllData = () => {
-    const URL = 'https://openapi.programming-hero.com/api/ai/tools';
-    fetch(URL)
-        .then(res => res.json())
-        .then(data => {
-            displayFetchData(data.data.tools)         
-        })
+    const cardParent = document.getElementById('card-container');
+    cardParent.innerHTML = '';
+    displayFetchData(allData)
     const showMoreBtn = document.getElementById('show-more');
     showMoreBtn.classList.add('d-none');
-   
+
 }
-
-
 
 
 fetchData();

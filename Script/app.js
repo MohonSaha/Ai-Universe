@@ -145,7 +145,7 @@ const sortByDate = () => {
     fetch(URL)
         .then(res => res.json())
         .then(data => {
-            displayFetchDataBySort(data.data.tools.slice(0, 6))
+            displayFetchDataBySort(data.data.tools)
         });
 }
 

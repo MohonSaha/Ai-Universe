@@ -64,8 +64,8 @@ const fetchShowDetails = (id) => {
 const displayShowDetails = (data) => {
     console.log(data);
     const { input_output_examples, image_link, description, pricing, features, integrations, accuracy} = data;
-    const accuracyPercent = accuracy.score * 100;
-    console.log(input_output_examples[0].output.length);
+    // const accuracyPercent = accuracy.score * 100;
+    // console.log(input_output_examples[0].output.length);
     const modalImg = document.getElementById('modal-img');
     const modalText = document.getElementById('modal-text');
     modalText.innerHTML = `
@@ -74,17 +74,17 @@ const displayShowDetails = (data) => {
 
                         <div class= 'price-container'>
                             <div class = 'basic-price price-div'>
-                            <p>${pricing[0].price}</p>
-                            <p>${pricing[0].plan}</p>
+                            <p>${pricing ? pricing[0].price : 'Free of Cost'}</p>
+                            <p>${pricing ? pricing[0].plan : 'Basic'}</p>
                             </div>
 
                             <div class = 'pro-price price-div'>
-                                <p>${pricing[1].price}</p>
-                                <p>${pricing[1].plan}</p>
+                                <p>${pricing ? pricing[1].price : 'Free of Cost'}</p>
+                                <p>${pricing ? pricing[0].plan : 'Pro'}</p>
                             </div>
                             <div class = 'enterprise-price price-div'>
-                                <p>${pricing[2].price}</p>
-                                <p>${pricing[2].plan}</p>
+                                <p>${pricing ? pricing[2].price : 'Free of Cost'}</p>
+                                <p>${pricing ? pricing[2].plan : 'Enterprise'}</p>
                             </div>
                         </div>
 
@@ -102,9 +102,9 @@ const displayShowDetails = (data) => {
                                 <div class="col-md-6">
                                     <h4>Integrations</h4>
                                     <ul>
-                                        <li>${integrations[0]}</li>
-                                        <li>${integrations[1]}</li>
-                                         <li>${integrations[2]}</li>
+                                        <li>${integrations ? integrations[0] ? integrations[0] : "No data found" : "No data found"}</li>
+                                        <li>${integrations ? integrations[1] ? integrations[1] : "No data found" : "No data found"}</li>
+                                         <li>${integrations ? integrations[2] ? integrations[2] : "No data found" : "No data found"}</li>
                                     </ul>
                                 </div>
                             </div>                            
@@ -116,10 +116,10 @@ const displayShowDetails = (data) => {
     modalImg.innerHTML = `
                     <div class = 'modal-img-container position-relative'>                   
                     <img class='modal-img pe-2' src="${image_link[0]}" alt="">
-                    <span class="badge text-bg-danger p-2">${accuracyPercent}% accuracy</span>
+                    <span class="badge text-bg-danger p-2"></span>
                     <div class = 'text-center mt-4 pe-3'>
-                    <h4>${input_output_examples[0].input}</h4>
-                    <p class = 'px-4 text-secondary'>${input_output_examples[0].output ? input_output_examples[0].output : 'sorrry'}</p>
+                    <h4>${input_output_examples ? input_output_examples[0].input : "Can you give any example?"}</h4>
+                    <p class = 'px-4 text-secondary'>${input_output_examples ? input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
                     </div>
                     </div>
     `;

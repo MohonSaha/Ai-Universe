@@ -19,6 +19,7 @@ const displayFetchData = (data) => {
     cardParent.innerHTML = '';
     data.forEach(singleData => {
         const { image, features, name, published_in, id } = singleData;
+        console.log(features[2]);
         const btnContainer = document.getElementById('btn-container');
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('col');
@@ -29,9 +30,9 @@ const displayFetchData = (data) => {
                         <h5 class="card-title">Features</h5>
                         <p class="card-text">
                         <ol>
-                            <li>${features[0] ? features[0] : 'Not available'}</li>
-                            <li>${features[1] ? features[1] : 'Not available'}</li>
-                            <li>${features[2] ? features[2] : 'Not available'}</li>
+                            <li>${features[0] ? features[0] : 'No data found'}</li>
+                            <li>${features[1] ? features[1] : 'No data found'}</li>
+                            <li>${features[2] ? features[2] : 'No data found'}</li>
                         </ol>
 
                         <hr class = 'mb-4'> 
@@ -66,8 +67,6 @@ const fetchShowDetails = (id) => {
 const displayShowDetails = (data) => {
     console.log(data);
     const { input_output_examples, image_link, description, pricing, features, integrations, accuracy } = data;
-    // const accuracyPercent = accuracy.score * 100;
-    // console.log(input_output_examples[0].output.length);
     const modalImg = document.getElementById('modal-img');
     const modalText = document.getElementById('modal-text');
     modalText.innerHTML = `
@@ -175,9 +174,9 @@ const sortByDate = () => {
                             <h5 class="card-title">Features</h5>
                             <p class="card-text">
                             <ol>
-                                <li>${features[0] ? features[0] : 'Not available'}</li>
-                                <li>${features[1] ? features[1] : 'Not available'}</li>
-                                <li>${features[2] ? features[2] : 'Not available'}</li>
+                                <li>${features[0] ? features[0] : 'No data found'}</li>
+                                <li>${features[1] ? features[1] : 'No data found'}</li>
+                                <li>${features[2] ? features[2] : 'No data found'}</li>
                             </ol>
     
                             <hr class = 'mb-4'> 

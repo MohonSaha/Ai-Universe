@@ -21,6 +21,8 @@ const displayFetchData = (data) => {
     const cardParent = document.getElementById('card-container');
     data.forEach(singleData => {
         const { image, features, name, published_in, id } = singleData;
+        console.log(features);
+        
         const btnContainer = document.getElementById('btn-container');
         btnContainer.innerHTML = `
                 <button onclick="sortByDate(${presentDataLength})" type="button" class="btn btn-danger mt-3">Sort By Date</button>
@@ -34,10 +36,9 @@ const displayFetchData = (data) => {
                     <div class="card-body">
                         <h5 class="card-title">Features</h5>
                         <p class="card-text">
+
                         <ol>
-                            <li>${features[0] ? features[0] : 'No data found'}</li>
-                            <li>${features[1] ? features[1] : 'No data found'}</li>
-                            <li>${features[2] ? features[2] : 'No data found'}</li>
+                            ${features.map((s) => `<li>${s}</li>`).join('')}
                         </ol>
 
                         <hr class = 'mb-4'> 
@@ -55,7 +56,14 @@ const displayFetchData = (data) => {
                     </div>
                 </div>
         `;
+
+        // document.getElementById('features-container');
+        // console.log(featuresContainer);
+        // document.getElementById('features-container').innerHTML = ;
+
         cardParent.appendChild(cardDiv);
+
+            
 
     });
 }

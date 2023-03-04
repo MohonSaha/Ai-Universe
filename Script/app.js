@@ -21,7 +21,6 @@ const displayFetchData = (data) => {
     const cardParent = document.getElementById('card-container');
     data.forEach(singleData => {
         const { image, features, name, published_in, id } = singleData;
-        console.log(features);
         
         const btnContainer = document.getElementById('btn-container');
         btnContainer.innerHTML = `
@@ -57,13 +56,7 @@ const displayFetchData = (data) => {
                 </div>
         `;
 
-        // document.getElementById('features-container');
-        // console.log(featuresContainer);
-        // document.getElementById('features-container').innerHTML = ;
-
-        cardParent.appendChild(cardDiv);
-
-            
+        cardParent.appendChild(cardDiv);          
 
     });
 }
@@ -81,6 +74,8 @@ const fetchShowDetails = (id) => {
 const displayShowDetails = (data) => {
     console.log(data);
     const { input_output_examples, image_link, description, pricing, features, integrations, accuracy } = data;
+    console.log(pricing);
+    // console.log(pricing[1].price)
     const modalImg = document.getElementById('modal-img');
     const modalText = document.getElementById('modal-text');
     modalText.innerHTML = `
@@ -89,14 +84,15 @@ const displayShowDetails = (data) => {
 
                         <div class= 'price-container'>
                             <div class = 'basic-price price-div'>
-                            <p>${pricing ? pricing[0].price : 'Free of Cost'}</p>
+                            <p>${pricing ? priceChecking(pricing[0].price, pricing, 0) : 'Free of Cost'}</p>
                             <p>${pricing ? pricing[0].plan : 'Basic'}</p>
                             </div>
 
                             <div class = 'pro-price price-div'>
-                                <p>${pricing ? pricing[1].price : 'Free of Cost'}</p>
-                                <p>${pricing ? pricing[0].plan : 'Pro'}</p>
+                                <p>${pricing ? priceChecking(pricing[1].price, pricing, 1) : 'Free of Cost'}</p>
+                                <p>${pricing ? pricing[1].plan : 'Pro'}</p>
                             </div>
+
                             <div class = 'enterprise-price price-div'>
                                 <p>${pricing ? pricing[2].price : 'Free of Cost'}</p>
                                 <p>${pricing ? pricing[2].plan : 'Enterprise'}</p>
@@ -142,6 +138,23 @@ const displayShowDetails = (data) => {
 }
 
 
+// Price Checking Function
+const priceChecking = (price, amount, index) =>{
+    if(price === 'No cost'){
+        const noCost = "Free of Cost";
+        return noCost;
+    }
+    else if(price === '0'){
+        const zeroCost = "Free of Cost";
+        return zeroCost;
+    }
+    else{
+        const show = amount[index].price;
+        return show;
+
+    }
+}
+
 
 // Function: Implement sort button
 
@@ -158,7 +171,6 @@ const sortByDate = (length) => {
     }
 }
 
-
 // Date sorting function :
 customSort = (a, b) => {
     const dateA = new Date(a.published_in);
@@ -167,7 +179,6 @@ customSort = (a, b) => {
     else if (dateA < dateB) return -1;
     return 0;
 };
-
 
 // Show all button to show all data in UI
 const showAllData = () => {
@@ -178,6 +189,5 @@ const showAllData = () => {
     showMoreBtn.classList.add('d-none');
 
 }
-
 
 fetchData();
